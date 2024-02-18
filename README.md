@@ -1,3 +1,3 @@
-# Delivery service (for educational purposes)
+# Delivery service
 
 Simple delivery service on native golang
