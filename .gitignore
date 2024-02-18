@@ -1,0 +1,6 @@
+# Ignore IDE additional files
+.vscode
+.idea
+
+# Ignore mounted directiories
+db/

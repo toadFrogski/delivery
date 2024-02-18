@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:bookworm
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=dbPwd
+      - POSTGRES_USER=db
+      - POSTGRES_DB=anton
+    volumes:
+      - ./db:/var/lib/postgresql/data
