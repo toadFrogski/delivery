@@ -6,17 +6,19 @@ services:
     build:
       context: ./backend
       dockerfile: ../docker/backend/Dockerfile
-    ports:
-      - "3000:3000"
+    environment:
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_DATABASE
+      - DB_HOST
+      - DB_PORT
 
   db:
     image: postgres:bookworm
     restart: unless-stopped
-    ports:
-      - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=dbPwd
-      - POSTGRES_USER=db
-      - POSTGRES_DB=anton
+      - POSTGRES_PASSWORD
+      - POSTGRES_USER
+      - POSTGRES_DB
     volumes:
       - ./db:/var/lib/postgresql/data

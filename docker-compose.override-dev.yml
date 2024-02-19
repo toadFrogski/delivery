@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  backend:
+    environment:
+      - DB_USERNAME=delivery_dev
+      - DB_PASSWORD=delivery_devPwd
+      - DB_DATABASE=delivery_dev
+      - DB_HOST=db
+      - DB_PORT=5432
+    ports:
+      - "3000:3000"
+
+  db:
+    image: postgres:bookworm
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=delivery_devPwd
+      - POSTGRES_USER=delivery_dev
+      - POSTGRES_DB=delivery_dev
+    volumes:
+      - ./db:/var/lib/postgresql/data
