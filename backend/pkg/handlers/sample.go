@@ -1,11 +1,13 @@
 package handlers
 
 import (
+	"delivery/pkg/modules/sample"
+	"delivery/pkg/utils/db"
 	"net/http"
 )
 
-func InitHandlers(router *http.ServeMux) {
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello"))
-	})
+func InitSampleHandlers(router *http.ServeMux, db *db.Postgres) {
+	sample := sample.NewSampleController(db)
+
+	router.HandleFunc("/", sample.Sample)
 }

@@ -3,13 +3,17 @@ WORKDIR /build
 
 RUN apt-get update && apt-get install -y git
 
+# Install dependencies
+COPY go.mod go.sum ./
+RUN go mod download
+
 # Build
 COPY . .
 WORKDIR /build/cmd
 RUN CGO_ENABLED=0 go build -o app .
 
 # Create final image
-FROM alpine
+FROM alpine as runtime
 WORKDIR /app
 COPY --from=builder /build/cmd/app .
 
