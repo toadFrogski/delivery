@@ -3,4 +3,4 @@
 .idea
 
 # Ignore mounted directiories
-db/
+./db
