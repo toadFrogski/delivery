@@ -3,6 +3,7 @@ version: "3"
 services:
   backend:
     image: delivery/backend
+    restart: unless-stopped
     build:
       context: ./backend
       dockerfile: ../docker/backend/Dockerfile

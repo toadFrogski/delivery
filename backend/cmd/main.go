@@ -10,13 +10,13 @@ import (
 
 func main() {
 	mux := http.NewServeMux()
-	db, err := db.Connect(context.Background())
-	if err != nil {
-		log.Fatal(err)
+	conn := db.Connect(context.Background())
+	if conn == nil {
+		log.Fatalf("unable to create connection pool")
 	}
-	defer db.Conn.Close()
+	defer conn.Close()
 
-	initHandlers(mux, db)
+	initHandlers(mux, conn)
 	log.Fatal(http.ListenAndServe(":3000", mux))
 }
 
